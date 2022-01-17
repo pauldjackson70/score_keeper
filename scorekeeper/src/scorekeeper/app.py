@@ -97,18 +97,26 @@ class ScoreKeeper(toga.App):
         print('record')
         print(self.main_box._children)
         for i in self.main_box._children:
-            if len(i.children)>0: print(f'{i.children[0].text}: {i.children[-1].value}')
+            if len(i.children)>0: 
+                # print(i.children)
+                # print(f'{i.children[0].text}: {i.children[-1].value}')
+                self.dict_players[i.children[0].text].append(i.children[-1].value)
+                i.insert(len(i.children)-3,toga.Label(i.children[-1].value))
+                i.children[-1].value = 0
+                i.children[-2].text = sum(self.dict_players[i.children[0].text])
+        # print(self.dict_players)
 
     def save_players(self, widget):
         for a in range(0, self.player_count):
-            self.dict_players[f'{self.player_list_box.children[a].value}'] = ()
-            self.main_box.add(
-            toga.Box(
+            self.dict_players[f'{self.player_list_box.children[a].value}'] = []
+            
+            box_player = toga.Box(
                 children=[
                     toga.Label(f'{self.player_list_box.children[a].value}'),
-                    toga.Label('0',style=Pack(alignment='center')),
+                    toga.Label('------'),
                     toga.Label('______'),
-                    toga.NumberInput(f'input_{self.player_list_box.children[a].value}')
+                    toga.Label('0'),
+                    toga.NumberInput(f'input_{self.player_list_box.children[a].value}',default=0)
                 ],
                 style=Pack(
                     flex=1,
@@ -116,8 +124,8 @@ class ScoreKeeper(toga.App):
                     alignment='center',
                 )
             )
-        )
-        print(self.dict_players)
+            self.main_box.add(box_player)
+        # print(self.dict_players)
         self.add_players_window.close()
 
 def main():

@@ -15,7 +15,7 @@ class ScoreKeeper(toga.App):
         Construct and show the Toga application.
         """
         self.main_box = toga.Box(style=Pack(direction=COLUMN))
-
+        print('Did I get to startup?')
         self.dict_players = {}
         self.player_count = 0
         # btn_add_players=toga.Button(
@@ -32,22 +32,28 @@ class ScoreKeeper(toga.App):
         self.add_players_mainbox = toga.Box(
             style=Pack(direction=COLUMN)
         )
+        print('before add players')
         self.add_players(self)
+        print('AFTER FUNTION CALL ADD PLAYERS')
         self.main_box.add(
             # btn_add_players,
             self.add_players_mainbox,
             self.btn_record_score,
         )
-
+        print('how a bout just before the window')
         self.main_window = toga.MainWindow(title=self.formal_name)
+        print('how a bout just or after the window')
         self.main_window.content = self.main_box
+        print('after setting the content')
         self.main_window.show()
+        print('after show')
     
     def add_players(self, widget):
         # self.player_count = 0
         # self.add_players_mainbox = toga.Box(
         #     style=Pack(direction=COLUMN)
         # )
+        print('in add players')
         self.add_players_box = toga.Box(
             style=Pack(
                 flex=1,
@@ -62,12 +68,15 @@ class ScoreKeeper(toga.App):
                 padding=3,
             )
         )
-        self.number_players = toga.Label(self.player_count)
+        print('before creating number players label')
+        self.number_players = toga.Label(f'{self.player_count}')
+        print('after creating number players label')
         self.btn_new_player = toga.Button(
             'Add Player',
             on_press=self.action_new_players,
             style=Pack(flex = 1)
         )
+        print('between btn_newplay and btn_saveplayers')
         self.btn_save_players = toga.Button(
             'Save Player Names',
             on_press=self.save_players,
@@ -82,6 +91,7 @@ class ScoreKeeper(toga.App):
             self.add_players_box,
             self.player_list_box,
         )
+        print('before action new players')
         self.action_new_players(widget)
         # self.add_players_window = toga.Window(title='Add Players',)
         # self.windows += self.add_players_window
@@ -90,7 +100,9 @@ class ScoreKeeper(toga.App):
         # self.main_window.content = self.add_players_mainbox
     
     def action_new_players(self, widget):
+        print('in action new players')
         self.player_count += 1
+        print('after incramenting player_count')
         # self.player_list_box.add(
         #     toga.TextInput(
         #         id='input_player'+str(self.player_count),
@@ -104,7 +116,7 @@ class ScoreKeeper(toga.App):
                 toga.Label('------'),
                 toga.Label('______'),
                 toga.Label('0'),
-                toga.NumberInput(default=0)
+                toga.NumberInput() #default=0)
             ],
             style=Pack(
                 flex=1,
@@ -112,9 +124,12 @@ class ScoreKeeper(toga.App):
                 alignment='center',
             )
         )
-        self.number_players.text = self.player_count
+        print('afer creating box_player')
+        self.number_players.text = f'{self.player_count}'
+        print('after updating number players')
         self.player_list_box.add(box_player)
-        box_player.children[0].focus()
+        # box_player.children[0].focus()
+        print('END OF ACTION NEW PLAYERS')
 
 
     def record_score(self, widget):

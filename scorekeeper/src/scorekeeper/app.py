@@ -136,22 +136,54 @@ class ScoreKeeper(toga.App):
         print('record')
         print(self.player_list_box._children)
         for i in self.player_list_box._children:
-            if len(i.children)>0: 
-                print(i.children)
-                print(f'{i.children[0].text}: {i.children[-1].value}')
-                self.dict_players[i.children[0].text].append(i.children[-1].value)
-                i.insert(len(i.children)-3,toga.Label(i.children[-1].value))
-                i.children[-1].value = 0
-                i.children[-2].text = sum(self.dict_players[i.children[0].text])
+            self.dict_players[i.children[0].text].append(int(i.children[-1].value))
+            print(self.dict_players)
+            temp_name = i.children[0].text
+            for x in reversed(i.children): #range(len(i.children)-1,0):
+                print(x)
+                i.remove(x) #i.children[x])
+            i.add(toga.Label(temp_name))
+            i.add(toga.Label('------'))
+            print(len(self.dict_players[i.children[0].text]))
+            for round in range(0, len(self.dict_players[i.children[0].text])):
+                print(round)
+                i.add(toga.Label(f'{self.dict_players[i.children[0].text][round]}'))
+            i.add(toga.Label('______'))
+            i.add(toga.Label(f'{sum(self.dict_players[i.children[0].text])}'))
+            i.add(toga.NumberInput())
+            
+            # if len(i.children)>0: 
+            #     print(i.children)
+            #     print(f'{i.children[0].text}: {i.children[-1].value}')
+            #     self.dict_players[i.children[0].text].append(i.children[-1].value)
+            #     i.insert(len(i.children)-3,toga.Label(i.children[-1].value))
+            #     i.children[-1].value = 0
+            #     i.children[-2].text = sum(self.dict_players[i.children[0].text])
         print(self.dict_players)
+        print(len(self.dict_players[i.children[0].text]))
 
     def save_players(self, widget):
         # self.main_window.content = self.main_box
         for i in self.player_list_box._children:
             if len(i.children)>0:
-                self.dict_players[f'{i.children[0].value}'] = []
-                i.insert(1,toga.Label(i.children[0].value))
-                i.remove(i.children[0])
+                self.dict_players[f'{i.children[0].value}'] = [0]
+                temp_name = i.children[0].value
+                # i.children[0] = toga.Label(temp_name)
+                # yield 0.1
+                # i.add(toga.Label(i.children[0].value))
+                print(len(i.children))
+                print(i.children)
+                for x in reversed(i.children): #range(len(i.children)-1,0):
+                    print(x)
+                    i.remove(x) #i.children[x])
+                i.add(toga.Label(temp_name))
+                i.add(toga.Label('------'))
+                print(len(self.dict_players[i.children[0].text]))
+                for round in self.dict_players[i.children[0].text]:
+                    i.add(toga.Label(f'{self.dict_players[i.children[0].text][round]}'))
+                i.add(toga.Label('______'))
+                i.add(toga.NumberInput())
+                
         self.btn_record_score.enabled = True
         # for a in range(0, self.player_count):
         #     self.dict_players[f'{self.player_list_box.children[a].value}'] = []

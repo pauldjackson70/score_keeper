@@ -1,7 +1,7 @@
 [tool.briefcase]
 project_name = "Score Keeper"
 bundle = "com.example"
-version = "0.0.1"
+version = "0.0.2"
 url = "https://github.com/pauldjackson70/scorekeeper"
 license = "BSD license"
 author = 'Paul D Jackson'
@@ -17,7 +17,7 @@ requires = []
 
 [tool.briefcase.app.scorekeeper.macOS]
 requires = [
-    'toga-cocoa>=0.3.0.dev20',
+    'toga-cocoa>=0.4.0',
 ]
 
 [tool.briefcase.app.scorekeeper.linux]
@@ -34,16 +34,16 @@ system_requires = [
 
 [tool.briefcase.app.scorekeeper.windows]
 requires = [
-    'toga-winforms>=0.3.0.dev20',
+    'toga-winforms>=0.4.0',
 ]
 
 # Mobile deployments
 [tool.briefcase.app.scorekeeper.iOS]
 requires = [
-    'toga-iOS>=0.3.0.dev20',
+    'toga-iOS>=0.4.0',
 ]
 
 [tool.briefcase.app.scorekeeper.android]
 requires = [
-    'toga-android>=0.3.0.dev20',
+    'toga-android>=0.4.0',
 ]

@@ -102,14 +102,6 @@ class ScoreKeeper(toga.App):
     def action_new_players(self, widget):
         print('in action new players')
         self.player_count += 1
-        print('after incramenting player_count')
-        # self.player_list_box.add(
-        #     toga.TextInput(
-        #         id='input_player'+str(self.player_count),
-        #         placeholder='player'+str(self.player_count),
-        #         style=Pack(padding=3)
-        #     )
-        # )
         box_player = toga.Box(
             children=[
                 toga.TextInput(placeholder=f'Player{self.player_count}'),
@@ -151,14 +143,6 @@ class ScoreKeeper(toga.App):
             i.add(toga.Label('______'))
             i.add(toga.Label(f'{sum(self.dict_players[i.children[0].text])}'))
             i.add(toga.NumberInput())
-            
-            # if len(i.children)>0: 
-            #     print(i.children)
-            #     print(f'{i.children[0].text}: {i.children[-1].value}')
-            #     self.dict_players[i.children[0].text].append(i.children[-1].value)
-            #     i.insert(len(i.children)-3,toga.Label(i.children[-1].value))
-            #     i.children[-1].value = 0
-            #     i.children[-2].text = sum(self.dict_players[i.children[0].text])
         print(self.dict_players)
         print(len(self.dict_players[i.children[0].text]))
 
@@ -168,12 +152,7 @@ class ScoreKeeper(toga.App):
             if len(i.children)>0:
                 self.dict_players[f'{i.children[0].value}'] = [0]
                 temp_name = i.children[0].value
-                # i.children[0] = toga.Label(temp_name)
-                # yield 0.1
-                # i.add(toga.Label(i.children[0].value))
-                print(len(i.children))
-                print(i.children)
-                for x in reversed(i.children): #range(len(i.children)-1,0):
+                for x in reversed(i.children): 
                     print(x)
                     i.remove(x) #i.children[x])
                 i.add(toga.Label(temp_name))
@@ -185,27 +164,8 @@ class ScoreKeeper(toga.App):
                 i.add(toga.NumberInput())
                 
         self.btn_record_score.enabled = True
-        # for a in range(0, self.player_count):
-        #     self.dict_players[f'{self.player_list_box.children[a].value}'] = []
-            
-        #     box_player = toga.Box(
-        #         children=[
-        #             toga.Label(f'{self.player_list_box.children[a].value}'),
-        #             toga.Label('------'),
-        #             toga.Label('______'),
-        #             toga.Label('0'),
-        #             toga.NumberInput(f'input_{self.player_list_box.children[a].value}',default=0)
-        #         ],
-        #         style=Pack(
-        #             flex=1,
-        #             direction=COLUMN,
-        #             alignment='center',
-        #         )
-        #     )
-        #     self.player_list_box.add(box_player)
-        #     self.player_list_box.style=Pack(direction=ROW)
-        # print(self.dict_players)
-        # self.add_players_window.close()
+        self.btn_save_players.enabled = False
+    
 
 def main():
     return ScoreKeeper()

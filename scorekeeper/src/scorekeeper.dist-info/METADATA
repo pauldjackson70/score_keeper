@@ -1,10 +1,11 @@
 Metadata-Version: 2.1
-Briefcase-Version: 0.3.5
+Briefcase-Version: 0.3.11
 Name: scorekeeper
 Formal-Name: Score Keeper
 App-ID: com.example.scorekeeper
-Version: 0.0.1
+Version: 0.0.2
 Home-page: https://github.com/pauldjackson70/scorekeeper
+Download-URL: https://github.com/pauldjackson70/scorekeeper
 Author: Paul D Jackson
 Author-email: paul.d.jackson70@gmail.com
 Summary: A program to keep track of score during game play
